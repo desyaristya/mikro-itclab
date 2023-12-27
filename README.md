@@ -15,14 +15,21 @@ Deep Learning, suatu metode dalam kecerdasan buatan (AI), terinspirasi oleh cara
 Support Vector Machine (SVM) adalah suatu algoritma pembelajaran mesin yang digunakan untuk klasifikasi dan regresi. SVM mampu menangani tugas-tugas seperti mengelompokkan data ke dalam kategori atau menentukan relasi antara variabel. Prinsip dasar SVM adalah mencari hyperplane optimal yang memaksimalkan jarak antara dua kelas data yang berbeda. Selain itu, SVM juga efektif dalam ruang fitur yang tinggi dan menunjukkan kinerja yang baik dalam mengatasi data kompleks. Aplikasi SVM melibatkan berbagai bidang, termasuk pengenalan pola, klasifikasi teks, pengenalan wajah, dan berbagai keperluan lainnya.
 
 ## Tahapan Penelitian
-![metode penelitian mikrokontroler](https://github.com/desyaristya/mikro-itclab/assets/90812374/7504fb90-4f43-4054-a4f1-6e09b4863041)
+<p align="center">
+  <img src="https://github.com/desyaristya/mikro-itclab/assets/90812374/7504fb90-4f43-4054-a4f1-6e09b4863041" alt="Tahapan Penelitian"/>
+</p>
+Seperti yang terlihat pada alur di atas, penelitian ini diawali dengan mengumpulkan data yang dibutuhkan. Kemudian dilakukan preprocessing untuk mempersiapkan data yang akan digunakan di tahap selanjutnya. Setelah itu, dilakukan training model untuk membentuk model dari pembelajaran mesin. Terakhir, dilakukan evaluasi untuk mengetahui performa sistem yang dibuat.
 
 ### Pengumpulan Data
-![Pengumpulan Data](https://github.com/desyaristya/mikro-itclab/assets/90812374/f0d6554f-a8da-4874-a125-01e2fa570deb)
+<p align="center">
+  <img src="https://github.com/desyaristya/mikro-itclab/assets/90812374/f0d6554f-a8da-4874-a125-01e2fa570deb" alt="Pengumpulan Data"/>
+</p>
 Penelitian ini melibatkan pengumpulan data menggunakan perangkat lunak emulasi TCLab. Selama tahap pengumpulan data, emulator TCLab diatur pada kecepatan 100 kali. Saat simulasi berlangsung, variasi setpoint suhu diberikan untuk mencerminkan nilai target yang diinginkan dalam pengendalian suhu. Dalam penelitian ini, untuk memastikan kualitas pelatihan model, terdapat variasi pada setpoint dengan d yang diberlakukan. TCLab emulator dijalankan selama 540 loop, di mana setiap loop mencakup pembacaan sensor suhu dan penyesuaian aktuator untuk mencapai setpoint yang telah ditetapkan. Pada setiap iterasi, sensor suhu membaca nilai aktual, dan aktuator disesuaikan untuk mendekati setpoint yang diinginkan. Penelitian ini juga menyajikan grafik dataset setpoint yang digunakan untuk melatih model.
 
 ### Preprocessing
-![Pra Proses Data](https://github.com/desyaristya/mikro-itclab/assets/90812374/178734d7-11c4-4d2a-aece-cb16c39d5762)
+<p align="center">
+  <img src="https://github.com/desyaristya/mikro-itclab/assets/90812374/178734d7-11c4-4d2a-aece-cb16c39d5762" alt="Preprocessing"/>
+</p>
 Setelah mengumpulkan data setpoint dan error, dilakukan pra-pemrosesan data untuk menyiapkan data sebelum pelatihan model. Salah satu langkah kunci dalam pra-pemrosesan data adalah pemilihan fitur, dengan setpoint dan error sebagai fitur terpilih. Setpoint mencerminkan nilai target suhu dalam pengendalian suhu, sedangkan error adalah perbedaan antara setpoint dan suhu aktual yang diukur. Output yang diprediksi dalam penelitian ini adalah Q, hasil penjumlahan dari komponen P (Proporsional), I (Integral), dan D (Derivative) yang merujuk pada algoritma kontrol PID (Proporsional-Integral-Derivative) untuk mengendalikan suhu.
 
 Langkah lain dalam pra-pemrosesan data mencakup normalisasi data. Normalisasi, menggunakan Min-Max Scaling dalam penelitian ini, dilakukan untuk mengubah rentang nilai setiap fitur agar dapat diolah dengan baik oleh model pembelajaran mesin. Min-Max Scaling mengubah skala nilai data dari rentang nilai aktual menjadi rentang nilai antara 0 hingga 1 atau -1 hingga 1. Formula Min-Max Scaling digunakan dengan X scaled sebagai hasil scaling data ke-i, 𝑥 sebagai nilai asli data ke-i, xmin sebagai nilai minimum dari X, dan xmax sebagai nilai maksimum dari X (Naufal et al., 2023).
@@ -36,12 +43,15 @@ Evaluasi dilaksanakan untuk memperbandingkan kinerja implementasi jaringan SVM s
 ## Hasil Penelitian
 Penelitian ini melakukan penilaian kinerja antara pengendali PID konvensional, pengendali PID yang mengandalkan deep learning, dan pengendali berbasis SVM. Tiga parameter evaluasi utama yang digunakan adalah rising time, settling time, dan overshoot.
 <h4 align="center">Hasil Menggunakan PID</h4>
-![PID_Result](https://github.com/desyaristya/mikro-itclab/assets/90812374/4a202aac-97ee-41b1-82b2-726b7c416c7d)
+<p align="center">
+  <img src="https://github.com/desyaristya/mikro-itclab/assets/90812374/4a202aac-97ee-41b1-82b2-726b7c416c7d" alt="Hasil Menggunakan PID"/>
+</p>
 
 <h4 align="center">Hasil Menggunakan SVM</h4>
-![SVM_Result](https://github.com/desyaristya/mikro-itclab/assets/90812374/f8575009-55d0-4ea0-9b9e-eb5544fb390e)
+<p align="center">
+  <img src="https://github.com/desyaristya/mikro-itclab/assets/90812374/f8575009-55d0-4ea0-9b9e-eb5544fb390e" alt="Hasil Menggunakan SVM"/>
+</p>
 <br>
-
 Grafik kinerja PID berbasis deep learning membandingkan sistem PID tradisional dan PID SVM dalam aspek kritis. Meskipun PID tradisional lebih cepat mencapai 90% dari nilai setpoint setelah perubahan input dengan perbedaan waktu sekitar 15 detik dalam rising time dibandingkan dengan PID SVM, settling time menunjukkan hasil sebaliknya. PID tradisional membutuhkan waktu lebih lama, yaitu 1 detik lebih banyak daripada PID SVM, untuk mencapai nilai yang mendekati setpoint secara stabil. Analisis overshoot menunjukkan bahwa PID tradisional memiliki overshoot lebih kecil, yaitu sebesar 0.81%, dibandingkan dengan PID SVM, menandakan kemampuan PID tradisional dalam menghasilkan respons yang lebih stabil dan overshoot yang minimal. Grafik kinerja memberikan gambaran komprehensif tentang keunggulan dan kelemahan masing-masing metode pengendalian, memungkinkan pemahaman yang lebih baik tentang performa keduanya dalam konteks spesifik sistem dan tujuan kontrol yang diinginkan.
 
 ## Kesimpulan
